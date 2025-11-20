@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,23 +34,28 @@ fun BullsEyeScreen() {
             modifier = Modifier.weight(9f)
 
         ) {
-            Text(text = "Put the eyes as close as you can")
+            Text(text = stringResource(R.string.instruction_text))
             Text(
-                text = "88", fontSize = 24.sp, fontWeight = FontWeight.Bold
+                text = stringResource(R.string.target_value_text),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
             )
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "min", modifier = Modifier.padding(horizontal = 5.dp))
+                Text(text = stringResource(R.string.min_value_text), modifier = Modifier.padding(horizontal = 5.dp))
                 Slider(
                     modifier = Modifier.weight(1f),
                     value = 0.5f, valueRange = 0.01f..1f, onValueChange = {}
                 )
 
-                Text(text = "max", modifier = Modifier.padding(horizontal = 5.dp))
+                Text(
+                    text = stringResource(R.string.max_value_text),
+                    modifier = Modifier.padding(horizontal = 5.dp)
+                )
             }
 
             Button(onClick = {}) {
-                Text("HitMe")
+                Text(stringResource(R.string.hit_me_button_text))
             }
         }
         Spacer(modifier = Modifier.weight(0.5f))
