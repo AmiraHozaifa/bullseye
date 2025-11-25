@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 fun BullsEyeDialog(
     modifier: Modifier = Modifier,
     sliderVal : Int,
+    score : Int,
     onDialogDismissRequest: () -> Unit
 ) {
 
@@ -24,6 +25,6 @@ fun BullsEyeDialog(
             }
         },
         title = { Text(stringResource(id = R.string.result_dialog_title)) },
-        text = { Text(stringResource(id = R.string.result_dialog_message , sliderVal)) }
+        text = { Text(stringResource(id = R.string.result_dialog_message , sliderVal , score)) }
     )
 }

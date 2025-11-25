@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun GameHeader(modifier: Modifier = Modifier) {
+fun GameHeader(modifier: Modifier = Modifier,
+               targetValue : Int ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -23,8 +24,8 @@ fun GameHeader(modifier: Modifier = Modifier) {
         Text(text = stringResource(R.string.instruction_text))
 
         Text(
-            text = stringResource(R.string.target_value_text),
-            fontSize = 24.sp,
+            text = "$targetValue",
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(24.dp)
         )
@@ -36,5 +37,5 @@ fun GameHeader(modifier: Modifier = Modifier) {
 @Composable
 @Preview
 fun GameHeaderPreview() {
-    GameHeader()
+    GameHeader(targetValue = 66)
 }

@@ -11,6 +11,8 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,12 +25,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.sync.Mutex
+import kotlin.math.abs
+import kotlin.random.Random
+
+fun calculateScore(target: Int, current: Int): Int {
+    val maxScore = 100
+    return maxScore - abs(current - target)
+}
 
 @Composable
 fun BullsEyeScreen() {
 
     var alertIsVisible by rememberSaveable { mutableStateOf(false) }
-    var sliderValue by rememberSaveable { mutableStateOf(0.5f) }
+    var sliderValue by rememberSaveable { mutableFloatStateOf(0.5f) }
+    var sliderIntValue = (sliderValue * 100).toInt()
+
+    var targetValue by rememberSaveable { mutableIntStateOf(Random.nextInt(1, 100)) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -43,7 +55,7 @@ fun BullsEyeScreen() {
 
         ) {
 
-            GameHeader()
+            GameHeader(targetValue = targetValue)
 
             TargetSlider(value = sliderValue) { newValue -> sliderValue = newValue }
             Button(onClick = {
@@ -57,7 +69,8 @@ fun BullsEyeScreen() {
             //Text(text = "This is an alert")
             BullsEyeDialog(
                 onDialogDismissRequest = { alertIsVisible = false },
-                sliderVal = (sliderValue * 100).toInt()
+                sliderVal = sliderIntValue,
+                score = calculateScore(targetValue, sliderIntValue)
             )
         }
 
