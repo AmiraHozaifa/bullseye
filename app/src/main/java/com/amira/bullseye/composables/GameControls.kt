@@ -15,20 +15,24 @@ import com.amira.bullseye.R
 
 
 @Composable
-fun GameControls() {
+fun GameControls(
+    score: Int,
+    round: Int,
+    modifier: Modifier = Modifier,
+) {
 
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Button(
             onClick = {}
         ) { Text(stringResource(R.string.start_over)) }
 
-        Text(stringResource(R.string.score_label, 1), textAlign = TextAlign.Center)
+        Text(stringResource(R.string.score_label, score), textAlign = TextAlign.Center)
 
-        Text(stringResource(R.string.current_round_label, 1), textAlign = TextAlign.Center)
+        Text(stringResource(R.string.current_round_label, round), textAlign = TextAlign.Center)
 
         Button(
             onClick = {}
@@ -41,5 +45,5 @@ fun GameControls() {
 @Composable
 @Preview
 fun GameControlsPreview() {
-    GameControls()
+    GameControls(0, 1)
 }

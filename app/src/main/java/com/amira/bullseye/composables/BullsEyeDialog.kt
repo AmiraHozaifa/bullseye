@@ -10,10 +10,11 @@ import com.amira.bullseye.R
 
 @Composable
 fun BullsEyeDialog(
-    modifier: Modifier = Modifier,
     sliderVal : Int,
     score : Int,
-    onDialogDismissRequest: () -> Unit
+    title : Int,
+    onDialogDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     AlertDialog(
@@ -25,7 +26,7 @@ fun BullsEyeDialog(
                 Text(stringResource(id = R.string.result_dialog_button_text))
             }
         },
-        title = { Text(stringResource(id = R.string.result_dialog_title)) },
+        title = { Text(stringResource(id = title)) },
         text = { Text(stringResource(id = R.string.result_dialog_message , sliderVal , score)) }
     )
 }
