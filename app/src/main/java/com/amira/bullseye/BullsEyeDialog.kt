@@ -18,7 +18,7 @@ fun BullsEyeDialog(
         onDismissRequest = onDialogDismissRequest,
         confirmButton = {
             TextButton(onClick = {
-                onDialogDismissRequest
+                onDialogDismissRequest()
             }) {
                 Text(stringResource(id = R.string.result_dialog_button_text))
             }

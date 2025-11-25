@@ -42,13 +42,8 @@ fun BullsEyeScreen() {
             modifier = Modifier.weight(9f)
 
         ) {
-            Text(text = stringResource(R.string.instruction_text))
-            Text(
-                text = stringResource(R.string.target_value_text),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
 
+            GameHeader()
 
             TargetSlider(value = sliderValue) { newValue -> sliderValue = newValue }
             Button(onClick = {
