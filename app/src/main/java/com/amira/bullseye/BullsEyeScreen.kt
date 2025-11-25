@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,8 +27,8 @@ import kotlinx.coroutines.sync.Mutex
 @Composable
 fun BullsEyeScreen() {
 
-    var alertIsVisible by remember { mutableStateOf(false) }
-    var sliderValue by remember { mutableStateOf(0.5f) }
+    var alertIsVisible by rememberSaveable { mutableStateOf(false) }
+    var sliderValue by rememberSaveable { mutableStateOf(0.5f) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
