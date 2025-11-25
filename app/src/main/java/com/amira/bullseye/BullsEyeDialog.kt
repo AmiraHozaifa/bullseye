@@ -10,7 +10,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun BullsEyeDialog(
     modifier: Modifier = Modifier,
-
+    sliderVal : Int,
     onDialogDismissRequest: () -> Unit
 ) {
 
@@ -24,6 +24,6 @@ fun BullsEyeDialog(
             }
         },
         title = { Text(stringResource(id = R.string.result_dialog_title)) },
-        text = { Text(stringResource(id = R.string.result_dialog_message )) }
+        text = { Text(stringResource(id = R.string.result_dialog_message , sliderVal)) }
     )
 }

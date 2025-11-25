@@ -27,6 +27,8 @@ import kotlinx.coroutines.sync.Mutex
 fun BullsEyeScreen() {
 
     var alertIsVisible by remember { mutableStateOf(false) }
+    var sliderValue by remember { mutableStateOf(0.5f) }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -46,7 +48,6 @@ fun BullsEyeScreen() {
                 fontWeight = FontWeight.Bold
             )
 
-            var sliderValue by remember { mutableStateOf(0.5f) }
 
             TargetSlider(value = sliderValue) { newValue -> sliderValue = newValue }
             Button(onClick = {
@@ -58,7 +59,10 @@ fun BullsEyeScreen() {
         Spacer(modifier = Modifier.weight(0.5f))
         if (alertIsVisible) {
             //Text(text = "This is an alert")
-            BullsEyeDialog(onDialogDismissRequest = { alertIsVisible = false })
+            BullsEyeDialog(
+                onDialogDismissRequest = { alertIsVisible = false },
+                sliderVal = (sliderValue * 100).toInt()
+            )
         }
 
     }

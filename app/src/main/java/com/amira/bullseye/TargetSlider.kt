@@ -40,5 +40,5 @@ fun TargetSlider(
 @Preview
 @Composable
 fun TargetSliderPreview() {
-    TargetSlider(value = 0.5F, onValueChanged = {})
+    TargetSlider(value = 0.5F , onValueChanged = {})
 }
