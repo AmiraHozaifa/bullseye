@@ -30,7 +30,7 @@ import kotlin.random.Random
 
 fun calculateScore(target: Int, current: Int): Int {
     val maxScore = 100
-    return maxScore - abs(current - target)
+    return maxScore- abs(current - target)
 }
 
 @Composable
