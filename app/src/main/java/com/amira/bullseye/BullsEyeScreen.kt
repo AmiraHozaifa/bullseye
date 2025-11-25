@@ -10,6 +10,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -22,6 +26,7 @@ import kotlinx.coroutines.sync.Mutex
 @Composable
 fun BullsEyeScreen() {
 
+    var alertIsVisible by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -41,24 +46,20 @@ fun BullsEyeScreen() {
                 fontWeight = FontWeight.Bold
             )
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = stringResource(R.string.min_value_text), modifier = Modifier.padding(horizontal = 5.dp))
-                Slider(
-                    modifier = Modifier.weight(1f),
-                    value = 0.5f, valueRange = 0.01f..1f, onValueChange = {}
-                )
+            var sliderValue by remember { mutableStateOf(0.5f) }
 
-                Text(
-                    text = stringResource(R.string.max_value_text),
-                    modifier = Modifier.padding(horizontal = 5.dp)
-                )
-            }
-
-            Button(onClick = {}) {
+            TargetSlider(value = sliderValue) { newValue -> sliderValue = newValue }
+            Button(onClick = {
+                alertIsVisible = true
+            }) {
                 Text(stringResource(R.string.hit_me_button_text))
             }
         }
         Spacer(modifier = Modifier.weight(0.5f))
+        if (alertIsVisible) {
+            //Text(text = "This is an alert")
+            BullsEyeDialog(onDialogDismissRequest = { alertIsVisible = false })
+        }
 
     }
 }
