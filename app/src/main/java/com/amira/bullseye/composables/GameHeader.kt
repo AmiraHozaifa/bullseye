@@ -1,4 +1,4 @@
-package com.amira.bullseye
+package com.amira.bullseye.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.amira.bullseye.R
 
 @Composable
 fun GameHeader(modifier: Modifier = Modifier,

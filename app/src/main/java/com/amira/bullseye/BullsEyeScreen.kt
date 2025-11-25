@@ -2,35 +2,30 @@ package com.amira.bullseye
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.sync.Mutex
+import com.amira.bullseye.composables.BullsEyeDialog
+import com.amira.bullseye.composables.GameHeader
+import com.amira.bullseye.composables.TargetSlider
 import kotlin.math.abs
 import kotlin.random.Random
 
 fun calculateScore(target: Int, current: Int): Int {
     val maxScore = 100
-    return maxScore- abs(current - target)
+    return maxScore - abs(current - target)
 }
 
 @Composable
@@ -38,6 +33,8 @@ fun BullsEyeScreen() {
 
     var alertIsVisible by rememberSaveable { mutableStateOf(false) }
     var sliderValue by rememberSaveable { mutableFloatStateOf(0.5f) }
+    var totalScore by rememberSaveable { mutableIntStateOf(0) }
+
     var sliderIntValue = (sliderValue * 100).toInt()
 
     var targetValue by rememberSaveable { mutableIntStateOf(Random.nextInt(1, 100)) }
@@ -58,7 +55,9 @@ fun BullsEyeScreen() {
             GameHeader(targetValue = targetValue)
 
             TargetSlider(value = sliderValue) { newValue -> sliderValue = newValue }
+            Text("Value $sliderIntValue")
             Button(onClick = {
+                totalScore += calculateScore(targetValue, sliderIntValue)
                 alertIsVisible = true
             }) {
                 Text(stringResource(R.string.hit_me_button_text))
