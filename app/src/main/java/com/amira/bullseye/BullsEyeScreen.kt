@@ -40,7 +40,14 @@ fun BullsEyeScreen() {
 
     fun calculateScore(): Int {
         val maxScore = 100
-        return maxScore - calculateScoreDiff()
+        val diff = calculateScoreDiff()
+        var bonus = 0
+        if (diff == 0) {
+            bonus = 100
+        } else if (diff == 1) {
+            bonus = 50
+        }
+        return (maxScore - diff) + bonus
     }
 
     fun getScoreMessage(): Int {
@@ -111,6 +118,6 @@ fun BullsEyeScreen() {
 
 @Composable
 @Preview
-fun previewGame() {
+fun PreviewGame() {
     BullsEyeScreen()
 }
