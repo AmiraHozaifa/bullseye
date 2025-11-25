@@ -18,6 +18,7 @@ import com.amira.bullseye.R
 fun GameControls(
     score: Int,
     round: Int,
+    onStartOver : () -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
@@ -27,7 +28,7 @@ fun GameControls(
         modifier = modifier.fillMaxWidth()
     ) {
         Button(
-            onClick = {}
+            onClick = onStartOver
         ) { Text(stringResource(R.string.start_over)) }
 
         Text(stringResource(R.string.score_label, score), textAlign = TextAlign.Center)
@@ -45,5 +46,5 @@ fun GameControls(
 @Composable
 @Preview
 fun GameControlsPreview() {
-    GameControls(0, 1)
+    GameControls(0, 1 , onStartOver = {})
 }

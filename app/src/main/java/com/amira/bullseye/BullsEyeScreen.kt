@@ -27,15 +27,21 @@ import kotlin.random.Random
 @Composable
 fun BullsEyeScreen() {
 
+    fun generateNewTarget() = Random.nextInt(1, 100)
+
     var alertIsVisible by rememberSaveable { mutableStateOf(false) }
     var sliderValue by rememberSaveable { mutableFloatStateOf(0.5f) }
     var sliderIntValue = (sliderValue * 100).toInt()
     var totalScore by rememberSaveable { mutableIntStateOf(0) }
     var currentRound by rememberSaveable { mutableIntStateOf(1) }
-    var targetValue by rememberSaveable { mutableIntStateOf(Random.nextInt(1, 100)) }
+    var targetValue by rememberSaveable { mutableIntStateOf(generateNewTarget()) }
 
-    fun calculateScoreDiff(): Int {
-        return abs(sliderIntValue - targetValue)
+    fun calculateScoreDiff() = abs(sliderIntValue - targetValue)
+    fun resetGame() {
+        sliderValue = 0.5f
+        totalScore = 0
+        currentRound = 1
+        targetValue = generateNewTarget()
     }
 
     fun calculateScore(): Int {
@@ -58,12 +64,15 @@ fun BullsEyeScreen() {
             difference == 0 -> {
                 R.string.alert_title_1
             }
+
             difference < 5 -> {
                 R.string.alert_title_2
             }
+
             difference <= 10 -> {
                 R.string.alert_title_3
             }
+
             else -> {
                 R.string.alert_title_4
             }
@@ -102,7 +111,7 @@ fun BullsEyeScreen() {
             BullsEyeDialog(
                 onDialogDismissRequest = {
                     currentRound++
-                    targetValue = Random.nextInt(1, 100)
+                    targetValue = generateNewTarget()
                     alertIsVisible = false
                 },
                 title = getScoreMessage(),
@@ -111,7 +120,7 @@ fun BullsEyeScreen() {
             )
         }
 
-        GameControls(totalScore, currentRound)
+        GameControls(totalScore, currentRound, onStartOver = { resetGame() })
 
     }
 }
