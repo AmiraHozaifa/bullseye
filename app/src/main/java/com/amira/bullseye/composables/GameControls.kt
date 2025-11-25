@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,7 +32,7 @@ fun GameControls(
             onClick = onStartOver
         ) { Text(stringResource(R.string.start_over)) }
 
-        Text(stringResource(R.string.score_label, score), textAlign = TextAlign.Center)
+        Text(stringResource(R.string.score_label, score), textAlign = TextAlign.Center , style = MaterialTheme.typography.labelLarge)
 
         Text(stringResource(R.string.current_round_label, round), textAlign = TextAlign.Center)
 
