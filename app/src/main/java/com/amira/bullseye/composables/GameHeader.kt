@@ -3,6 +3,7 @@ package com.amira.bullseye.composables
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,19 +16,23 @@ import androidx.compose.ui.unit.sp
 import com.amira.bullseye.R
 
 @Composable
-fun GameHeader(modifier: Modifier = Modifier,
-               targetValue : Int ) {
+fun GameHeader(
+    modifier: Modifier = Modifier,
+    targetValue: Int
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = modifier
     ) {
-        Text(text = stringResource(R.string.instruction_text))
+        Text(
+            text = stringResource(R.string.instruction_text),
+            style = MaterialTheme.typography.displayMedium.copy(letterSpacing = 1.sp, fontWeight = FontWeight.Bold)
+        )
 
         Text(
             text = "$targetValue",
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
             modifier = Modifier.padding(24.dp)
         )
 
