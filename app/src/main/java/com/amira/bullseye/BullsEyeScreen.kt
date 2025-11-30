@@ -1,5 +1,6 @@
 package com.amira.bullseye
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.amira.bullseye.composables.BullsEyeDialog
@@ -81,6 +84,12 @@ fun BullsEyeScreen() {
         return title
     }
 
+    Image(
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.Crop, // New Code
+        painter = painterResource(id = R.drawable.background),
+        contentDescription = "Background Image"
+    )
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
