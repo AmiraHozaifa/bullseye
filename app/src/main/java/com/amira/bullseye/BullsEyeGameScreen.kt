@@ -1,9 +1,11 @@
 package com.amira.bullseye
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +17,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.amira.bullseye.composables.BullsEyeDialog
@@ -25,7 +29,10 @@ import kotlin.math.abs
 import kotlin.random.Random
 
 @Composable
-fun BullsEyeScreen() {
+fun BullsEyeGameScreen(
+    onInfoClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     fun generateNewTarget() = Random.nextInt(1, 100)
 
@@ -81,8 +88,16 @@ fun BullsEyeScreen() {
         return title
     }
 
+    Image(
+        modifier = modifier.fillMaxSize(),
+        contentScale = ContentScale.Crop, // New Code
+        painter = painterResource(id = R.drawable.background),
+        contentDescription = "Background Image"
+    )
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .systemBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
@@ -120,13 +135,17 @@ fun BullsEyeScreen() {
             )
         }
 
-        GameControls(totalScore, currentRound, onStartOver = { resetGame() })
+        GameControls(
+            totalScore,
+            currentRound,
+            onStartOver = { resetGame() },
+            onInfo =  {onInfoClick()} )
 
     }
 }
 
-@Composable
-@Preview
-fun PreviewGame() {
-    BullsEyeScreen()
-}
+//@Composable
+//@Preview
+//fun PreviewGame() {
+//    BullsEyeGameScreen({})
+//}
