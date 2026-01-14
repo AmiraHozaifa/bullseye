@@ -1,5 +1,6 @@
 package com.amira.bullseye
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -22,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun BullsEyeInfoScreen() {
+fun BullsEyeInfoScreen(onNavigateBack : () -> Unit) {
 
     Scaffold(
         topBar = {
@@ -34,6 +35,7 @@ fun BullsEyeInfoScreen() {
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
@@ -49,7 +51,7 @@ fun BullsEyeInfoScreen() {
             )
 
             Button(
-                onClick = {},
+                onClick = onNavigateBack,
                 shape = MaterialTheme.shapes.medium,
 
                 ) { Text(text = stringResource(id = R.string.back_button_text)) }
@@ -62,7 +64,7 @@ fun BullsEyeInfoScreen() {
 @Composable
 @Preview
 fun BullsEyeInfoScreenPreview() {
-    BullsEyeInfoScreen()
+    BullsEyeInfoScreen({})
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -27,6 +27,7 @@ fun GameControls(
     score: Int,
     round: Int,
     onStartOver: () -> Unit,
+    onInfo: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
@@ -63,7 +64,7 @@ fun GameControls(
         )
 
         FilledIconButton(
-            onClick = {},
+            onClick = onInfo,
             colors = IconButtonDefaults.filledIconButtonColors(
                 containerColor = MaterialTheme.colorScheme.tertiary
             )
@@ -84,5 +85,5 @@ fun GameControls(
 @Composable
 @Preview
 fun GameControlsPreview() {
-    GameControls(0, 1, onStartOver = {})
+    GameControls(0, 1, onStartOver = {}, onInfo = {})
 }
